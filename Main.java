@@ -2,9 +2,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 class Main{
+
+
     public String[][] codes;
     public int[] register = new int[8];
     public int iterator;
+
+
     Main()
     {
         for(int i = 0; i < 8; i++)
@@ -12,6 +16,7 @@ class Main{
             register[i] = 0;
         }
     }
+
     public static void main(String[] args){
 
         File file = new File("test.txt");
@@ -84,24 +89,34 @@ class Main{
 
     public void binToInstruction(String[] arr)
     {
+        if(arr[0].charAt(0) == '#')
+            return;
         switch(arr[0])
         {
             case "00000001":
                 ADD(arr[1],arr[2],arr[3]);
+                break;
             case "00000010":
-                SUB(arr[1],arr[2],arr[3]);
-            // case "00000011":
-            //     return 2;
-            // case "00000100":
-            //     return 3;
-            // case "00000101":
-            //     return 4;
-            // case "00000110":
-            //     return 5;
-            // case "00000111":
-            //     return 6;
-            // default:
-            //     return -1;
+                ADDI(arr[1],arr[2],arr[3]);
+                break;
+            case "00000011":
+                SUB(arr[1], arr[2], arr[3]);
+                break;
+            case "00000100":
+                SUBI(arr[1], arr[2], arr[3]);
+                break;
+            case "00000101":
+                MOV(arr[1], arr[2]);
+                break;
+            case "00000110":
+                MOVI(arr[1], arr[2]);
+                break;
+            case "00000111":
+                DISP(arr[1]);
+                break;
+            case "00001000":
+                JMP(arr[1]);
+                break;
         }
     }
 
@@ -170,5 +185,22 @@ class Main{
             output = output + "$t" + (temp-4);
         }
         System.out.println(output+":  "+register[temp]);
+    }
+
+    public void JMP(String label)
+    {
+        while(iterator > 0)
+        {   iterator--;
+            if(codes[iterator][0].equals(label))
+                return;
+        }
+        System.out.println("Label Not Found!!");
+        System.exit(0);
+    }
+
+    public File deCodeFile(File file)
+    {
+        File output = new File("test2.txt");
+        return output;
     }
 }

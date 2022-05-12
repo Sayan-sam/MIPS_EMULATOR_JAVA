@@ -1,0 +1,3 @@
+Add s1,s2,s3
+mov s2,s3
+movi s1,54
