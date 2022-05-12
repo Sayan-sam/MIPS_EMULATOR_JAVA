@@ -1,2 +1,2 @@
 10000001 A B C
-SUB A B C
+SUB A B
