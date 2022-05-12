@@ -1,10 +1,16 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Scanner;
 class Main{
-    public ArrayList<String>[] codes;
+    public String[][] codes;
     public static void main(String[] args){
+
+        try {
+            Main m = new Main();
+            m.fileRead();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         
     }
 
@@ -16,15 +22,24 @@ class Main{
         while(sc.hasNextLine())
             {sc.nextLine();
             lines++;}
-        codes = new ArrayList[lines];
-        for(int i = 0; i < lines; i++)
-        {
-            codes[i] = new ArrayList<String>();
-        }
+        codes = new String[lines][4];
+        sc = new Scanner(file);
 
         for(int i = 0; i<lines; i++)
         {
-            String temp[] = sc.nextLine().split(" ", 3);
+            String temp[] = sc.nextLine().split(" ", 4);
+            for(int j = 0; j < 4; j++)
+            {
+                codes[i][j] = temp[j];
+            }
+        }
+
+        for(int i = 0; i < lines; i++)
+        {
+            for (int j = 0; j < 4; j++) {
+                System.out.print(" "+codes[i][j]);
+            }
+            System.out.println();
         }
     }
 }
