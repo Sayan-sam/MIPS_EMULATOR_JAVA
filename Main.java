@@ -5,19 +5,19 @@ class Main{
     public String[][] codes;
     public static void main(String[] args){
 
+        File file = new File("D:\\Codes\\MIPS\\MIPS Using MIPS\\test.txt");
         try {
             Main m = new Main();
-            m.fileRead();
+            m.fileRead(file);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         
     }
 
-    public void fileRead() throws FileNotFoundException
+    public String[][] fileRead(File file) throws FileNotFoundException
     {
         int lines = 0;
-        File file = new File("D:\\Codes\\MIPS\\MIPS Using MIPS\\test.txt");
         Scanner sc = new Scanner(file);
         while(sc.hasNextLine())
             {sc.nextLine();
@@ -41,5 +41,7 @@ class Main{
             }
             System.out.println();
         }
+
+        return codes;
     }
 }
