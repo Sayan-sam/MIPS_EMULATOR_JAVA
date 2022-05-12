@@ -1,2 +1,2 @@
-ADD A B C
+10000001 A B C
 SUB A B C

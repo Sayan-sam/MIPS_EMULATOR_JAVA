@@ -4,16 +4,25 @@ import java.util.Scanner;
 class Main{
     public String[][] codes;
     public int[] register = new int[8];
+    Main()
+    {
+        for(int i = 0; i < 8; i++)
+        {  
+            register[i] = 0;
+        }
+    }
     public static void main(String[] args){
 
-        File file = new File("D:\\Codes\\MIPS\\MIPS Using MIPS\\test.txt");
+        File file = new File("D:\\Codes\\MIPS\\MIPS_EMULATOR_JAVA\\test.txt");
+        Main m = new Main();
         try {
-            Main m = new Main();
+            
             m.fileRead(file);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        
+        m.register[m.binToRegister(m.codes[0][0])] = 45;
+        System.out.println(m.register[0]);
     }
 
     public String[][] fileRead(File file) throws FileNotFoundException
