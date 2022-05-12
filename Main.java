@@ -126,8 +126,7 @@ class Main{
 
     public int binToDecimal(String num)
     {
-        
-        return 0;
+        return Integer.parseInt(num, 2);
     }
 
     public void ADD(String s1, String s2, String s3)
@@ -148,5 +147,28 @@ class Main{
     public void MOVI(String s1, String s2)
     {
         register[binToRegister(s1)] = binToDecimal(s2);
+    }
+
+    public void ADDI(String s1, String s2, String s3)
+    {
+        register[binToRegister(s1)] = register[binToRegister(s2)] + binToDecimal(s3);
+    }
+
+    public void SUBI(String s1, String s2, String s3)
+    {
+        register[binToRegister(s1)] = register[binToRegister(s2)] - binToDecimal(s3);
+    }
+
+    public void DISP(String s1)
+    {
+        String output = "";
+        int temp = binToRegister(s1);
+        if(temp<= 3)
+            output = output + "$S" + temp;
+        else
+        {
+            output = output + "$t" + (temp-4);
+        }
+        System.out.println(output+":  "+register[temp]);
     }
 }
