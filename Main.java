@@ -21,10 +21,10 @@ class Main{
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        m.register[m.binToRegister(m.codes[0][0])] = 45;
-        System.out.println(m.register[0]);
-
-        System.out.println(m.decToBinary(12));
+        for(int i = 0; i < m.codes.length; i++)
+        {
+            m.binToInstruction(m.codes[i]);
+        }
     }
 
     public String[][] fileRead(File file) throws FileNotFoundException
@@ -53,7 +53,6 @@ class Main{
             }
             System.out.println();
         }
-
         return codes;
     }
 
@@ -82,26 +81,26 @@ class Main{
         }
     }
 
-    public int binToInstruction(String s)
+    public void binToInstruction(String[] arr)
     {
-        switch(s)
+        switch(arr[0])
         {
             case "00000001":
-                return 0;
-            case "00000010":
-                return 1;
-            case "00000011":
-                return 2;
-            case "00000100":
-                return 3;
-            case "00000101":
-                return 4;
-            case "00000110":
-                return 5;
-            case "00000111":
-                return 6;
-            default:
-                return -1;
+                ADD(arr[1],arr[2],arr[3]);
+            // case "00000010":
+            //     return 1;
+            // case "00000011":
+            //     return 2;
+            // case "00000100":
+            //     return 3;
+            // case "00000101":
+            //     return 4;
+            // case "00000110":
+            //     return 5;
+            // case "00000111":
+            //     return 6;
+            // default:
+            //     return -1;
         }
     }
 
@@ -124,9 +123,18 @@ class Main{
         return result;
     }
 
+    public String Adder(String )
     public String ADD(String s1, String s2, String s3)
     {
+
+        register[1] = 5;
+        register[2] = 4;
+ 
+        register[binToRegister(s1)] = register[binToRegister(s2)] + register[binToRegister(s3)];
+        System.out.println("R1: " + register[binToRegister(s1)]);
+        System.out.println("R2: " + register[binToRegister(s2)]);
+        System.out.println("R3: " + register[binToRegister(s3)]);
+         
         return "";
     }
-
 }
