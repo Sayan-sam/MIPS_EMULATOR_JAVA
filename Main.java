@@ -23,6 +23,8 @@ class Main{
         }
         m.register[m.binToRegister(m.codes[0][0])] = 45;
         System.out.println(m.register[0]);
+
+        System.out.println(m.decToBinary(12));
     }
 
     public String[][] fileRead(File file) throws FileNotFoundException
@@ -79,4 +81,47 @@ class Main{
                 return -1;
         }
     }
+
+    // public void binToInstruction(String s)
+    // {
+    //     switch(s)
+    //     {
+    //         case "00000001":
+    //             return 0;
+    //         case "00000010":
+    //             return 1;
+    //         case "00000011":
+    //             return 2;
+    //         case "00000100":
+    //             return 3;
+    //         case "00000101":
+    //             return 4;
+    //         case "00000110":
+    //             return 5;
+    //         case "00000111":
+    //             return 6;
+    //         default:
+    //             return -1;
+    //     }
+    // }
+
+    public String decToBinary(int num)
+    {
+        String result = "";
+        int  k = num;
+        while(k != 0)
+        {
+            if(k%2 == 1)
+            {
+                result = "1"+result;
+            }
+            else if(k%2==0)
+            {
+                result = "0"+result;
+            }
+            k = k/2;
+        }
+        return result;
+    }
+
 }
