@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 class Main{
     public String[][] codes;
+    public int[] register = new int[8];
     public static void main(String[] args){
 
         File file = new File("D:\\Codes\\MIPS\\MIPS Using MIPS\\test.txt");
@@ -43,5 +44,30 @@ class Main{
         }
 
         return codes;
+    }
+
+    public int binToRegister(String s)
+    {
+        switch(s)
+        {
+            case "10000001":
+                return 0;
+            case "10000010":
+                return 1;
+            case "10000011":
+                return 2;
+            case "10000100":
+                return 3;
+            case "10000101":
+                return 4;
+            case "10000110":
+                return 5;
+            case "10000111":
+                return 6;
+            case "10001000":
+                return 7;
+            default:
+                return -1;
+        }
     }
 }
