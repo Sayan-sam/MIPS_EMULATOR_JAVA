@@ -4,6 +4,7 @@ import java.util.Scanner;
 class Main{
     public String[][] codes;
     public int[] register = new int[8];
+    public int iterator;
     Main()
     {
         for(int i = 0; i < 8; i++)
@@ -13,7 +14,7 @@ class Main{
     }
     public static void main(String[] args){
 
-        File file = new File("D:\\Codes\\MIPS\\MIPS_EMULATOR_JAVA\\test.txt");
+        File file = new File("test.txt");
         Main m = new Main();
         try {
             
@@ -21,9 +22,9 @@ class Main{
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        for(int i = 0; i < m.codes.length; i++)
+        for(m.iterator = 0; m.iterator < m.codes.length; m.iterator++)
         {
-            m.binToInstruction(m.codes[i]);
+            m.binToInstruction(m.codes[m.iterator]);
         }
     }
 
@@ -35,7 +36,6 @@ class Main{
             {sc.nextLine();
             lines++;}
         codes = new String[lines][4];
-        sc = new Scanner(file);
 
         for(int i = 0; i<lines; i++)
         {
@@ -53,6 +53,7 @@ class Main{
             }
             System.out.println();
         }
+        sc.close();
         return codes;
     }
 
@@ -87,8 +88,8 @@ class Main{
         {
             case "00000001":
                 ADD(arr[1],arr[2],arr[3]);
-            // case "00000010":
-            //     return 1;
+            case "00000010":
+                SUB(arr[1],arr[2],arr[3]);
             // case "00000011":
             //     return 2;
             // case "00000100":
@@ -123,18 +124,29 @@ class Main{
         return result;
     }
 
-    public String Adder(String )
-    public String ADD(String s1, String s2, String s3)
+    public int binToDecimal(String num)
     {
+        
+        return 0;
+    }
 
-        register[1] = 5;
-        register[2] = 4;
- 
+    public void ADD(String s1, String s2, String s3)
+    {
         register[binToRegister(s1)] = register[binToRegister(s2)] + register[binToRegister(s3)];
-        System.out.println("R1: " + register[binToRegister(s1)]);
-        System.out.println("R2: " + register[binToRegister(s2)]);
-        System.out.println("R3: " + register[binToRegister(s3)]);
-         
-        return "";
+    }
+
+    public void SUB(String s1, String s2, String s3)
+    {
+        register[binToRegister(s1)] = Math.abs(register[binToRegister(s2)] - register[binToRegister(s3)]);
+    }
+
+    public void MOV(String s1, String s2)
+    {
+        register[binToRegister(s1)] = register[binToRegister(s2)]; 
+    }
+
+    public void MOVI(String s1, String s2)
+    {
+        register[binToRegister(s1)] = binToDecimal(s2);
     }
 }
