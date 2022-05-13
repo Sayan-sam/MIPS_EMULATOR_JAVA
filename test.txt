@@ -1,1 +1,6 @@
-00000001 10000001 10000010 10000011
+Movi s1,1010
+movi s2,10
+add s0,s1,s2
+disp s0
+disp s1
+disp s2

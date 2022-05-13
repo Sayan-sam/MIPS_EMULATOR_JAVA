@@ -45,23 +45,16 @@ class Main{
             {sc.nextLine();
             lines++;}
         codes = new String[lines][4];
-
+        Scanner sc2 = new Scanner(file);
         for(int i = 0; i<lines; i++)
         {
-            String temp[] = sc.nextLine().split(" ", 4);
-            for(int j = 0; j < 4; j++)
+            String[] temp = sc2.nextLine().split(" ", 4);
+            for(int j = 0; j < temp.length; j++)
             {
                 codes[i][j] = temp[j];
             }
         }
-
-        for(int i = 0; i < lines; i++)
-        {
-            for (int j = 0; j < 4; j++) {
-                System.out.print(" "+codes[i][j]);
-            }
-            System.out.println();
-        }
+        sc2.close();
         sc.close();
         return codes;
     }
@@ -220,12 +213,12 @@ class Main{
                 temp[i] = temp[i].toUpperCase();
             }
             String[] temp2 = temp[1].split(",",3);
-            result.write(temp[0]);
+            result.write(decodedString(temp[0]));
             for(int i = 0; i < temp2.length;i++)
             {
-                result.write(" "+temp2[i].trim());
+                result.write(" "+decodedString(temp2[i].trim()));
             }
-            result.write("/n");
+            result.write(System.getProperty("line.separator"));
         }
         s.close();
         result.close();
@@ -244,33 +237,33 @@ class Main{
             case "SUB":
                 return "00000011";
             case "SUBI":
-                return "00000001";
+                return "00000100";
             case "MOV":
-                return "00000001";
+                return "00000101";
             case "MOVI":
-                return "00000001";
+                return "00000110";
             case "DISP":
-                return "00000001";
+                return "00000111";
             case "JMP":
-                return "00000001";
+                return "00001000";
             case "S0":
-                return "00000001";
+                return "10000001";
             case "S1":
-                return "00000001";
+                return "10000010";
             case "S2":
-                return "00000001";
+                return "10000011";
             case "S3":
-                return "00000001";
+                return "10000100";
             case "T0":
-                return "00000001";
+                return "10000101";
             case "T1":
-                return "00000001";
+                return "10000110";
             case "T2":
-                return "00000001";
+                return "10000111";
             case "T3":
-                return "00000001";
+                return "10001000";
             default:
-                return "";
+                return s;
         }
     }
 
