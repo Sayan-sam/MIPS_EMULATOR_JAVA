@@ -1,6 +1,8 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
 class Main{
 
 
@@ -21,12 +23,14 @@ class Main{
 
         File file = new File("test.txt");
         Main m = new Main();
-        try {
             
-            m.fileRead(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+            try {
+                m.fileRead(m.deCodeFile(file));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         for(m.iterator = 0; m.iterator < m.codes.length; m.iterator++)
         {
             m.binToInstruction(m.codes[m.iterator]);
@@ -198,9 +202,77 @@ class Main{
         System.exit(0);
     }
 
-    public File deCodeFile(File file)
+    public File deCodeFile(File file) throws IOException
     {
-        File output = new File("test2.txt");
+        Scanner s = new Scanner(file);
+        File output = new File("a.regi");
+        FileWriter result = new FileWriter("a.regi");
+        while(s.hasNextLine())
+        {
+            String[] temp = s.nextLine().split(" ", 2);
+            if(temp.length == 1)
+            {
+                result.write(temp[0]);
+                continue;
+            }
+            for(int i = 0; i < 2; i++)
+            {
+                temp[i] = temp[i].toUpperCase();
+            }
+            String[] temp2 = temp[1].split(",",3);
+            result.write(temp[0]);
+            for(int i = 0; i < temp2.length;i++)
+            {
+                result.write(" "+temp2[i].trim());
+            }
+            result.write("/n");
+        }
+        s.close();
+        result.close();
         return output;
     }
+
+    public String decodedString(String s)
+    {
+
+        switch(s)
+        {
+            case "ADD":
+                return "00000001";
+            case "ADDI":
+                return "00000010";
+            case "SUB":
+                return "00000011";
+            case "SUBI":
+                return "00000001";
+            case "MOV":
+                return "00000001";
+            case "MOVI":
+                return "00000001";
+            case "DISP":
+                return "00000001";
+            case "JMP":
+                return "00000001";
+            case "S0":
+                return "00000001";
+            case "S1":
+                return "00000001";
+            case "S2":
+                return "00000001";
+            case "S3":
+                return "00000001";
+            case "T0":
+                return "00000001";
+            case "T1":
+                return "00000001";
+            case "T2":
+                return "00000001";
+            case "T3":
+                return "00000001";
+            default:
+                return "";
+        }
+    }
+
+
 }
